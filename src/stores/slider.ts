@@ -1,36 +1,31 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useSliderStore = defineStore('slider', () => {
-  const isLoading = ref(false);
-  const isError = ref(false);
-  const currentItemIndex = ref(0);
-  const message = ref('');
-  const items = ref([]);
+import { getSliderItems } from '@/api/slider';
+import { useRequest } from '@/composables/useRequest';
 
-  const fetchSliderItems = async () => {
-    try {
-      isLoading.value = true;
-      isError.value = false;
-      // TODO: fetch slider items request
-    } catch (error: unknown) {
-      isError.value = true;
-      message.value = error instanceof Error ? error.message : String(error);
-    } finally {
-      isLoading.value = false;
-    }
-  };
+export const useSliderStore = defineStore('slider', () => {
+  const {
+    isLoading,
+    isError,
+    message,
+    data: items,
+    sendRequest: fetchSliderItems,
+  } = useRequest(getSliderItems);
+
+  const currentItemIndex = ref(0);
+  const amount = computed(() => items?.value?.length ?? 0);
 
   const nextItem = () => {
     currentItemIndex.value =
-      currentItemIndex.value + 1 < items.value.length
+      currentItemIndex.value + 1 < amount.value
         ? currentItemIndex.value + 1
         : 0;
   };
 
-  const reloadSlider = () => {
+  const reloadSlider = async () => {
     currentItemIndex.value = 0;
-    fetchSliderItems();
+    await fetchSliderItems();
   };
 
   return {
