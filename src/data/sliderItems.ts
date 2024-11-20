@@ -12,7 +12,7 @@ export const sliderItems: SliderItem[] = [
     id: 2,
     type: MediaType.VIDEO,
     src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    duration: 10000,
+    duration: 10,
   },
   {
     id: 3,

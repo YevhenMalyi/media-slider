@@ -3,11 +3,19 @@ import MediaSlider from '@/components/MediaSlider.vue';
 </script>
 
 <template>
-  <header>This is header element</header>
-
   <main>
     <MediaSlider />
   </main>
-
-  <footer>This is footer element</footer>
 </template>
+
+<style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  width: 100svw;
+  gap: 8px;
+}
+</style>

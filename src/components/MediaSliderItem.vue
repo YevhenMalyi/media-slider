@@ -3,9 +3,9 @@ import { MediaType } from '@/types/media';
 import { computed } from 'vue';
 
 const { id, type, src } = defineProps<{
-  id: number;
-  type: MediaType;
-  src: string;
+  id?: number;
+  type?: MediaType;
+  src?: string;
 }>();
 
 const isImage = computed(() => type === MediaType.IMAGE);
