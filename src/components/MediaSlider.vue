@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia';
 import { useSliderStore } from '@/stores/slider';
 import MediaSliderItem from './MediaSliderItem.vue';
 import MediaSliderNav from './MediaSliderNav.vue';
+import spinnerSVG from '@/assets/spinner.svg';
 
 let timeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -72,7 +73,9 @@ onUnmounted(() => {
 
 <template>
   <div class="slider">
-    <div v-if="isLoading || items === null" class="loading">Loading...</div>
+    <div v-if="isLoading || items === null" class="loading">
+      <img :src="spinnerSVG" alt="Loading..." />
+    </div>
 
     <div v-else-if="isError" class="error">Error: {{ message }}</div>
 
@@ -81,7 +84,7 @@ onUnmounted(() => {
     </Transition>
   </div>
 
-  <div>
+  <div class="navigation">
     <MediaSliderNav
       v-show="Boolean(items)"
       :current-item-index="currentItemIndex"
@@ -155,5 +158,9 @@ onUnmounted(() => {
 .slide-reverse-leave-from {
   transform: translateX(0);
   opacity: 1;
+}
+
+.navigation {
+  height: 20px;
 }
 </style>
