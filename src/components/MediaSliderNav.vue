@@ -47,13 +47,13 @@ button {
 .navigation-button {
   transition: all 0.3s ease;
   color: lightgray;
-  font-size: 12px;
+  font-size: 14px;
   background-color: transparent;
 }
 
 .navigation-button:hover {
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .navigation-dot {
@@ -65,8 +65,8 @@ button {
 }
 
 .navigation-dot:hover {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .navigation-dot.active {
